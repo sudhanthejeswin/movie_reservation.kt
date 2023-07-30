@@ -1,0 +1,183 @@
+import java.util.Scanner
+
+data class User(val username: String, val password: String)
+data class Movie(val showTime: String, val movieName: String, val duration: String, val actor: String, val directorName: String)
+
+fun main() {
+    val users = arrayOf(
+        User("dhoni", "sakshi07"),
+        User("virat", "anushka18"),
+        User("rohit", "rithika45")
+    )
+    val screen1 = arrayOf(
+        Movie("10.00 am", "Maaveeran", "2h 25min ", "Sk,AditiShankar,Mysskin,YogiBabu", "Madonne Ashwin")
+    )
+    val screen2 = arrayOf(
+        Movie("10.15 am", "Leo", "2h 50min ", "Vijay,Trisha,SanjayDutt,Arjun", "Lokesh kanagaraj")
+    )
+    val screen3 = arrayOf(
+        Movie("10.30 am", "Jailer", "2h 40min", "Rajini,Mohanlal,Tammanaah,Sunil", "Nelson")
+    )
+    println("\n\n    \t\t\t\t\t\t\t\t\t\t\t\t\t\tWELCOME TO MOVIE TICKET RESERVATION!!!!\n\n")
+    
+    var validUsername = false
+    var validPassword = false
+
+    while (true) {
+        print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    Enter username: ")
+        val username = readLine()?.trim() ?: ""
+        var foundUser = false
+
+        for (user in users) {
+            if (user.username == username) {
+                foundUser = true
+                validUsername = true
+                print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    Enter password: ")
+                val password = readLine()?.trim() ?: ""
+
+                if (user.password == password) {
+                    validPassword = true
+                    break
+                }
+            }
+        }
+
+        if (!foundUser) {
+            println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tInvalid username!")
+        } else if (!validPassword) {
+            println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tInvalid password!")
+        } else {
+            println("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLogin successful!")
+            break
+        }
+
+        validUsername = false
+        validPassword = false
+    }
+    fun c(){
+    println("\n\n\t\t\t\t      Screen 1          \t\t\t\t\t\t\t\t      Screen 2                                      Screen 3")
+    println("             \t-------------------                    \t\t\t\t\t--------------------                          -------------------- ")
+    for (i in screen1.indices) {
+        println("\n\t\t\t\tShow Time: ${screen1[i].showTime}     \t\t\t\t\t\t\t\tShow Time: ${screen2[i].showTime}           \t\t\t      Show Time: ${screen3[i].showTime}")
+        println("\t\t\t\tMovie Name: ${screen1[i].movieName}       \t\t\t\t\t\t\tMovie Name: ${screen2[i].movieName}          \t\t\t\t\t  Movie Name: ${screen3[i].movieName}")
+        println("\t\t\t\tDuration: ${screen1[i].duration}          \t\t\t\t\t\t\tDuration: ${screen2[i].duration}                 \t\t  Duration: ${screen3[i].duration}")
+        println("\t\t\t\tActor: ${screen1[i].actor}                 Actor: ${screen2[i].actor}          Actor: ${screen3[i].actor}")
+        println("\t\t\t\tDirector: ${screen1[i].directorName}      \t\t\t\t\t\t\tDirector: ${screen2[i].directorName}             \t\t  Director: ${screen3[i].directorName}")
+        println()
+    }
+    val scanner = Scanner(System.`in`)
+    fun getUserInput(): String {
+        print("Enter a screen number or movie details (show time, movie name, or duration): ")
+        return scanner.nextLine().toLowerCase()
+    }
+    var userInput = getUserInput()
+    var foundMovie = false
+    for (movie in screen1) {
+        if (userInput == "screen 1" || userInput == "10.00 am" || userInput == movie.movieName.toLowerCase().toString()||userInput =="1"||userInput=="Screen 1") {
+            println("\n\t\t\t\tMovie Found in Screen Number 1:")
+            println("\t\t\t\tShow Time: ${movie.showTime}")
+            println("\t\t\t\tMovie Name: ${movie.movieName}")
+            println("\t\t\t\tDuration: ${movie.duration}")
+            println("\t\t\t\tActor: ${movie.actor}")
+            println("\t\t\t\tDirector: ${movie.directorName}")
+            foundMovie = true
+            break
+        }
+    }
+    if (!foundMovie) {
+        for (movie in screen2) {
+            if (userInput == "screen 2" || userInput == "10.15 am" || userInput == movie.movieName.toLowerCase() ||userInput =="2"||userInput=="Screen 2") {
+                println("\n\t\t\t\tMovie Found in Screen Number 2:")
+                println("\t\t\t\tShow Time: ${movie.showTime}")
+                println("\t\t\t\tMovie Name: ${movie.movieName}")
+                println("\t\t\t\tDuration: ${movie.duration}")
+                println("\t\t\t\tActor: ${movie.actor}")
+                println("\t\t\t\tDirector: ${movie.directorName}")
+                foundMovie = true
+                break
+            }
+        }
+    }
+    if (!foundMovie) {
+        for (movie in screen3) {
+            if (userInput == "screen 3" || userInput == "10.30 am" || userInput == movie.movieName.toLowerCase() ||userInput =="3"||userInput=="Screen 3") {
+                println("\n\t\t\t\tMovie Found in Screen Number 3:")
+                println("\t\t\t\tShow Time: ${movie.showTime}")
+                println("\t\t\t\tMovie Name: ${movie.movieName}")
+                println("\t\t\t\tDuration: ${movie.duration}")
+                println("\t\t\t\tActor: ${movie.actor}")
+                println("\t\t\t\tDirector: ${movie.directorName}")
+                foundMovie = true
+                break
+            }
+        }
+    }
+    if (!foundMovie) {
+        println("\n\t\t\t\tInvalid input! Movie not found.")
+    }
+
+    fun getUserInputt(): String {
+        print("Enter a screen number or movie details (show time, movie name, or duration): ")
+        return scanner.nextLine().toLowerCase()
+    }
+
+    fun selectSeats(numOfTickets: Int, rowSize: Int, columnSize: Int, currentTicket: Int = 1): List<Int> {
+        if (currentTicket > numOfTickets) {
+            return emptyList()
+        }
+
+        print("Enter the seat number for ticket $currentTicket: ")
+        val seatNumber = readLine()?.toIntOrNull()
+
+        return if (seatNumber != null && seatNumber in 1..rowSize * columnSize) {
+            val bookedSeats = selectSeats(numOfTickets, rowSize, columnSize, currentTicket + 1)
+            bookedSeats + seatNumber
+        } else {
+            println("Invalid seat number!")
+            selectSeats(numOfTickets, rowSize, columnSize, currentTicket) // Recursively ask for the same ticket number
+        }
+    }
+
+    println("\n\t\t\t\tscreen")
+    println("----------------------------------------\n")
+
+    val rowSize = 5
+    val columnSize = 10
+
+    for (i in 1..rowSize) {
+        for (j in 1..columnSize) {
+            val number = (i - 1) * columnSize + j
+            val formattedNumber = String.format("%2s", number)
+            print(formattedNumber + "\t")
+        }
+        println()
+    }
+
+    print("\nHow many tickets do you want to book? ")
+    val numOfTickets = readLine()?.toIntOrNull() ?: 0
+
+    if (numOfTickets > 0) {
+        println("\nPlease select your seats:")
+        val bookedSeats = selectSeats(numOfTickets, rowSize, columnSize)
+
+        if (bookedSeats.isEmpty()) {
+            println("\nNo seats selected. Ticket booking canceled.")
+        } else {
+            println("\n\t\t\t\tscreen")
+            println("----------------------------------------\n")
+            for (i in 1..rowSize) {
+                for (j in 1..columnSize) {
+                    val seat = (i - 1) * columnSize + j
+                    val formattedSeat = if (seat in bookedSeats) "*" else seat.toString()
+                    print("$formattedSeat\t")
+                }
+                println()
+            }
+            println("\n\t   Your tickets are booked.\n")
+        }
+
+    }
+
+    }
+    c()
+}
